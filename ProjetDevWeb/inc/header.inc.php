@@ -14,7 +14,45 @@
 
   <header>
 
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="index.php">AirBnB</a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="recherche.php">Rechercher une location</a>
+          </li>
 
+        <?php if(isset($_SESSION["connecte"])){ ?> <!-- Si connecté -->
+          <li class="nav-item active">
+            <a class="nav-link" href="gestionbiens.php">Gestion des annonces</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="compte.php">Gestion du compte</a>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav mr-sm-2">
+          <li class="form-inline my-2 my-lg-0">
+            <a class="btn btn-outline-danger my-2 my-sm-0" href="#">Déconnexion</a>
+          </li>
+        <?php }
+
+
+        else{ ?> <!-- Si déconnecté -->
+        </ul> 
+          <ul class="navbar-nav mr-sm-2">
+          <li class="form-inline my-2 my-lg-0" style="padding-right : 10px;">
+            <a class="btn btn-outline-info my-2 my-sm-0" href="connexion.php">Connexion</a>
+          </li>
+          <li class="form-inline my-2 my-lg-0">
+            <a class="btn btn-outline-info my-2 my-sm-0" href="creacompte.php">Inscription</a>
+          </li>
+        </ul>
+        <?php } ?>
+
+        </ul>
+      </div>
+    </nav>
 
   </header>
 
