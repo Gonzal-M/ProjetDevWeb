@@ -86,7 +86,7 @@
 
         $result = $pdo->query("SELECT id_compte FROM compte WHERE email='$_POST[email]'"); 
         $userID = $result->fetch(PDO::FETCH_OBJ);
-        $_POST["userID"]=$userID->id_compte;
+        $_SESSION["userID"]=$userID->id_compte;
         // ^Connecte l'utilisateur
 
         header("Location:index.php");
