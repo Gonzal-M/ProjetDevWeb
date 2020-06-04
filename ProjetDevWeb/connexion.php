@@ -6,8 +6,7 @@
 
     <br><h1>Connexion</h1><br>
 
-    <?php $result = $pdo->query("SELECT id_compte, email, mdp FROM compte"); 
-    $comptes = $result->fetch(PDO::FETCH_OBJ);?>
+    <?php $comptes = $pdo->query("SELECT id_compte, email, mdp FROM compte");?>
     <!-- ^Cherche le contenu de la base de données -->
 
     <form method="POST">
