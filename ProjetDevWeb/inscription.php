@@ -1,15 +1,5 @@
 <?php require_once("inc/header.inc.php"); ?>
 
-<!-- 
-    Page de création de compte 
-
-    Un compte requiert :
-    - un prénom
-    - un nom
-    - une adresse email
-    - un mot de passe
-    - une photo de profil
--->
 <div class="starter-template">  
 
     <br><h1>Créer un compte</h1>
@@ -59,6 +49,7 @@
 </div>
 <?php if(isset($_POST["prenom"]) && isset($_POST["nom"]) && isset($_POST["mdp1"]) && isset($_POST["mdp2"]) && isset($_POST["solde"])){
         // ^Vérifie que tous les champs obligatoires sont remplis 
+
     $_POST["prenom"] = htmlentities($_POST["prenom"], ENT_QUOTES);
     $_POST["nom"] = htmlentities($_POST["nom"], ENT_QUOTES);
     $_POST["mdp1"] = htmlentities($_POST["mdp1"], ENT_QUOTES);
@@ -84,6 +75,8 @@
     // ^Si la photo n'a pas été ajoutée, la photo par défaut est choisie
     
     if($_POST["mdp1"]==$_POST["mdp2"]){
+        // ^Vérifie que les mots de passe sont identiques
+
         $requeteSQL = "INSERT INTO compte (prenom, nom, email, mdp, nomphoto, solde) ";
         $requeteSQL .= "VALUE ('$_POST[prenom]', '$_POST[nom]', '$_POST[email]', '$_POST[mdp1]', '$_POST[nomphoto]', '$_POST[solde]')";
 
@@ -91,6 +84,7 @@
         //^Enregistre les données dans la base de données
 
         $_POST["connecte"]="true";
+        // ^Connecte l'utilisateur
 
         header("Location:index.php");
         // ^Retourne à la page d'accueil
