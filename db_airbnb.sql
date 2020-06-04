@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 03 juin 2020 à 17:13
+-- Généré le : jeu. 04 juin 2020 à 16:33
 -- Version du serveur :  10.4.11-MariaDB
 -- Version de PHP : 7.4.4
 
@@ -29,6 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `annonce` (
   `id_annonce` int(5) NOT NULL,
+  `id_compte` int(5) DEFAULT NULL,
   `titre` varchar(50) DEFAULT NULL,
   `description` text DEFAULT NULL,
   `nb_places` varchar(2) DEFAULT NULL,
@@ -85,7 +86,8 @@ CREATE TABLE `reservation` (
 -- Index pour la table `annonce`
 --
 ALTER TABLE `annonce`
-  ADD PRIMARY KEY (`id_annonce`);
+  ADD PRIMARY KEY (`id_annonce`),
+  ADD KEY `id_compte` (`id_compte`);
 
 --
 -- Index pour la table `compte`
@@ -138,6 +140,12 @@ ALTER TABLE `reservation`
 --
 -- Contraintes pour les tables déchargées
 --
+
+--
+-- Contraintes pour la table `annonce`
+--
+ALTER TABLE `annonce`
+  ADD CONSTRAINT `annonce_ibfk_1` FOREIGN KEY (`id_compte`) REFERENCES `compte` (`id_compte`);
 
 --
 -- Contraintes pour la table `photos`
