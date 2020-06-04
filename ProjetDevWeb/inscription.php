@@ -19,12 +19,12 @@
 
         <div class="form-group">
             <label for="email">Email<span style="color: red;">*</span></label>
-            <input type="email" class="form-control" id="email" name="email" maxlength = "50" placeholder="Adresse email">
+            <input type="email" class="form-control" id="email" name="email" maxlength = "50" placeholder="Adresse email (1-50 caractères)">
         </div>
 
         <div class="form-group">
             <label for="mdp1">Mot de passe<span style="color: red;">*</span></label>
-            <input type="password" class="form-control" id="mdp1" name="mdp1" maxlength = "50" placeholder="Mot de passe">
+            <input type="password" class="form-control" id="mdp1" name="mdp1" maxlength = "50" placeholder="Mot de passe (1-50 caractères)">
         </div>
 
         <div class="form-group">
@@ -47,11 +47,12 @@
 
     </form><br>
 </div>
-<?php if(isset($_POST["prenom"]) && isset($_POST["nom"]) && isset($_POST["mdp1"]) && isset($_POST["mdp2"]) && isset($_POST["solde"])){
-        // ^Vérifie que tous les champs obligatoires sont remplis 
+<?php if(!empty($_POST["prenom"]) && !empty($_POST["nom"]) && !empty($_POST["email"]) && !empty($_POST["mdp1"]) && !empty($_POST["mdp2"]) && !empty($_POST["solde"])){
+    // ^Vérifie que tous les champs obligatoires sont remplis 
 
     $_POST["prenom"] = htmlentities($_POST["prenom"], ENT_QUOTES);
     $_POST["nom"] = htmlentities($_POST["nom"], ENT_QUOTES);
+    $_POST["email"] = htmlentities($_POST["email"], ENT_QUOTES);
     $_POST["mdp1"] = htmlentities($_POST["mdp1"], ENT_QUOTES);
     $_POST["mdp2"] = htmlentities($_POST["mdp2"], ENT_QUOTES);
     $_POST["solde"] = htmlentities($_POST["solde"], ENT_QUOTES);
@@ -83,7 +84,9 @@
         $pdo->exec($requeteSQL);
         //^Enregistre les données dans la base de données
 
-        $_POST["connecte"]="true";
+        $result = $pdo->query("SELECT id_compte FROM compte WHERE email='$_POST[email]'"); 
+        $userID = $result->fetch(PDO::FETCH_OBJ);
+        $_POST["userID"]=$userID->id_compte;
         // ^Connecte l'utilisateur
 
         header("Location:index.php");

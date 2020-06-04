@@ -23,7 +23,7 @@
           </li>
 
         <?php session_start();
-        if(isset($_SESSION["connecte"])){ ?> <!-- Si connecté -->
+        if(isset($_SESSION["userID"])){ ?> <!-- Si connecté -->
           <li class="nav-item active">
             <a class="nav-link" href="gestionbiens.php">Gestion des annonces</a>
           </li>
