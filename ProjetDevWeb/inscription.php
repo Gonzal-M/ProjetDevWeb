@@ -64,7 +64,7 @@
             if ($error == UPLOAD_ERR_OK) {
                 $tmp_name = $_FILES["img"]["tmp_name"][$key];
                 $name = basename($_FILES["img"]["name"][$key]);
-                move_uploaded_file($tmp_name, "img/$name");
+                move_uploaded_file($tmp_name, "img/profile/$name");
             }
         }
     }
