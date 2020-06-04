@@ -1,4 +1,6 @@
 <?php require_once("inc/header.inc.php"); ?>
+<?php require_once("inc/inscription.inc.php"); ?>
+
 
 <div class="starter-template">  
 
@@ -42,7 +44,7 @@
             <input type="number" class="form-control" id="solde" name="solde" min="0" max="99999" placeholder="L'argent que vous souhaitez utiliser (en euros, jusqu'à 99.999€)">
         </div>
 
-        <br><button type="submit" class="btn btn-primary">Valider</button>
+        <br><button type="submit" class="btn btn-primary" name="submit">Valider</button>
         <a class="btn btn-primary" href="index.php">Retour</a>
 
     </form><br>
@@ -69,6 +71,7 @@
         }
     }
     // ^Vérifie que le fichier est bon, enregistre son nom dans $name et l'enregistre dans le dossier img/
+        
     
     else{
         $name="profilepicture.jpg";
@@ -91,7 +94,8 @@
 
         header("Location:index.php");
         // ^Retourne à la page d'accueil
-    }
+    }    
+
     else{
         echo("<p style='color: red;'>Les mots de passe sont différents</p>");
     }
