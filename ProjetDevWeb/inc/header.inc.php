@@ -32,11 +32,17 @@
           </li>
         </ul>
 
-        <ul class="navbar-nav mr-sm-2">
-          <li class="form-inline my-2 my-lg-0">
-            <a class="btn btn-outline-danger my-2 my-sm-0" href="#">Déconnexion</a>
-          </li>
-        <?php }
+        <form method="post">
+          <input type="hidden" name="goClearSession" value="1" >
+          <input type="submit" value="Déconnexion" class="btn btn-outline-danger my-2 my-sm-0">
+        </form>
+        <?php 
+          if(!empty($_POST["goClearSession"])) {
+            $_SESSION = array();
+            header("Location:index.php");
+          }
+
+        }
 
 
         else{ ?> <!-- Si déconnecté -->
@@ -51,7 +57,6 @@
         </ul>
         <?php } ?>
 
-        </ul>
       </div>
     </nav>
 
