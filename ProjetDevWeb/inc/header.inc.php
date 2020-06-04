@@ -22,7 +22,8 @@
             <a class="nav-link" href="recherche.php">Rechercher une location</a>
           </li>
 
-        <?php if(isset($_SESSION["connecte"])){ ?> <!-- Si connecté -->
+        <?php session_start();
+        if($_SESSION["connecte"]=="true"){ ?> <!-- Si connecté -->
           <li class="nav-item active">
             <a class="nav-link" href="gestionbiens.php">Gestion des annonces</a>
           </li>
@@ -45,7 +46,7 @@
             <a class="btn btn-outline-info my-2 my-sm-0" href="connexion.php">Connexion</a>
           </li>
           <li class="form-inline my-2 my-lg-0">
-            <a class="btn btn-outline-info my-2 my-sm-0" href="creacompte.php">Inscription</a>
+            <a class="btn btn-outline-info my-2 my-sm-0" href="inscription.php">Inscription</a>
           </li>
         </ul>
         <?php } ?>
@@ -56,4 +57,4 @@
 
   </header>
 
-<main>
+  <main role="main" class="container">
