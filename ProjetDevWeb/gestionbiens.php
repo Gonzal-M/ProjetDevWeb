@@ -54,16 +54,22 @@
     }
     
     
-    else if($_GET["gerer"]=="modifier"){
-        
+    else if($_GET["gerer"]=="modifier"){ ?>
+        <h3>Modifier une annonce</h3>
+        <?php require_once("inc/modifannonce.inc.php");
     }
 
     
 
     else if($_GET["gerer"]=="supprimer"){
+        $photos = $pdo->query("SELECT nomphoto FROM photos WHERE id_annonce = '$_GET[IDannonce]'");
+        while ($photo = $photos->fetch(PDO::FETCH_OBJ)){
+            unlink("img/annonces/$photo->nomphoto");
+        } 
         $pdo->exec("DELETE FROM photos WHERE id_annonce = '$_GET[IDannonce]'");
         $pdo->exec("DELETE FROM reservation WHERE id_annonce = '$_GET[IDannonce]'");
         $pdo->exec("DELETE FROM annonce WHERE id_annonce = '$_GET[IDannonce]'");
+        header("Location:gestionbiens.php");
     } ?>
 
 </div>

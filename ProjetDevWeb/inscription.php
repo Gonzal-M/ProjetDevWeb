@@ -107,7 +107,7 @@
     
             require_once("inc/inscription.inc.php");
             // ^Envoie mail de confirmation
-    
+            
             header("Location:index.php");
             // ^Retourne à la page d'accueil
         }    

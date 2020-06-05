@@ -72,6 +72,7 @@
     $requeteSQL .= "'$_POST[nomrue]', '$_POST[ville]', '$_POST[codepostal]', '$_POST[prix]')";
 
     $pdo->exec($requeteSQL);
+
     $annonce = $pdo->query("SELECT id_annonce FROM annonce WHERE id_compte='$_SESSION[userID]' ORDER BY id_annonce DESC LIMIT 1");
     $cherche_id_annonce = $annonce->fetch(PDO::FETCH_OBJ);
     $id_annonce = $cherche_id_annonce->id_annonce;
@@ -83,16 +84,11 @@
             $tmp_name = $_FILES["img"]["tmp_name"][$key];
             $name = basename($_FILES["img"]["name"][$key]);
             move_uploaded_file($tmp_name, "img/annonces/$name");
-            $requeteSQL = "INSERT INTO photos (id_annonce, nomphoto) VALUE ('$id_annonce','$name')";
-            $pdo->exec($requeteSQL);
+            $pdo->exec("INSERT INTO photos (id_annonce, nomphoto) VALUE ('$id_annonce','$name')");
         }
     }
 
-    
-
-    
-
-    //header("Location:gestionbiens.php");
+    header("Location:gestionbiens.php");
 
 } 
 
