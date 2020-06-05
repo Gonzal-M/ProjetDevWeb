@@ -29,7 +29,7 @@
     </div>
 
     <div class="form-group">
-        <label for="description">Description</label>
+        <label for="description">Description<span style="color: red;">*</span></label>
         <textarea rows="10" class="form-control" id="description" name="description" placeholder="Description du bien que vous louez"></textarea>
     </div>
 
@@ -67,27 +67,32 @@
     $_POST["prix"] = htmlentities($_POST["prix"], ENT_QUOTES);
     // ^Vérifie que les données entrées ne contiennent pas de code
 
-    $requeteSQL = "INSERT INTO annonce (titre, description, nb_places, numerorue, nomrue, ville, codepostal, prix) VALUE ";
-    $requeteSQL .= "('$_POST[titre]', '$_POST[description]', '$_POST[nbplaces]', '$_POST[numerorue]')";
-    $requeteSQL .= "('$_POST[nomrue]', '$_POST[ville]', '$_POST[codepostal]', '$_POST[prix]')";
+    $requeteSQL = "INSERT INTO annonce (id_compte, titre, descript, nb_places, numerorue, nomrue, ville, codepostal, prix) VALUE ";
+    $requeteSQL .= "($_SESSION[userID], '$_POST[titre]', '$_POST[description]', '$_POST[nbplaces]', '$_POST[numerorue]', ";
+    $requeteSQL .= "'$_POST[nomrue]', '$_POST[ville]', '$_POST[codepostal]', '$_POST[prix]')";
 
     $pdo->exec($requeteSQL);
+    $annonce = $pdo->query("SELECT id_annonce FROM annonce WHERE id_compte='$_SESSION[userID]' ORDER BY id_annonce DESC LIMIT 1");
+    $cherche_id_annonce = $annonce->fetch(PDO::FETCH_OBJ);
+    $id_annonce = $cherche_id_annonce->id_annonce;
 
     
-    foreach($_FILES as $cle => $valeur){
-        $name = "";
-        foreach ($_FILES["img"]["error"] as $key => $error) {
-            if ($error == UPLOAD_ERR_OK) {
-                $tmp_name = $_FILES["img"]["tmp_name"][$key];
-                $name = basename($_FILES["img"]["name"][$key]);
-                move_uploaded_file($tmp_name, "img/annonces/$name");
-            }
+    $name = "";
+    foreach ($_FILES["img"]["error"] as $key => $error) {
+        if ($error == UPLOAD_ERR_OK) {
+            $tmp_name = $_FILES["img"]["tmp_name"][$key];
+            $name = basename($_FILES["img"]["name"][$key]);
+            move_uploaded_file($tmp_name, "img/annonces/$name");
+            $requeteSQL = "INSERT INTO photos (id_annonce, nomphoto) VALUE ('$id_annonce','$name')";
+            $pdo->exec($requeteSQL);
         }
-        $requeteSQL = "INSERT INTO photos (id_compte, nomphoto) VALUE ('$_SESSION[userID]','$name')";
-        $pdo->exec($requeteSQL);
     }
 
-    header("Location:gestionbiens.php");
+    
+
+    
+
+    //header("Location:gestionbiens.php");
 
 } 
 

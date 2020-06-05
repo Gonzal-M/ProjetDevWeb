@@ -25,14 +25,14 @@
             <div class="card mb-3" style="max-width: 540px;">
                 <div class="row no-gutters">
                     <div class="col-md-4">
-                    <?php $photo = $pdo->query("SELECT * FROM photos WHERE id_compte='$_SESSION[userID]' ORDER BY id_photo LIMIT 1");
-                    $photo->fetch(PDO::FETCH_OBJ); ?>
-                    <img src="img/annonces/<?php echo $photo->nomphoto; ?>" class="card-img" alt="Première photo de l'annonce n°<?php echo $photo->id_photo; ?>">
+                    <?php $photo = $pdo->query("SELECT * FROM photos WHERE id_annonce='$annonce->id_annonce' ORDER BY id_photo LIMIT 1");
+                    $photo = $photo->fetch(PDO::FETCH_OBJ); ?>
+                    <img src="img/annonces/<?php echo $photo->nomphoto; ?>" class="card-img" alt="Première photo de l'annonce n°<?php echo $annonce->id_annonce; ?>">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $annonce->titre; ?></h5>
-                            <p class="card-text"><?php echo $annonce->description; ?></p>
+                            <p class="card-text"><?php echo $annonce->descript; ?></p>
                             <a class="btn btn-outline-info my-2 my-sm-0 btn-sm" href="gestionbiens.php?gerer=modifier&IDannonce=<?php echo $annonce->id_annonce; ?>" style="margin-left : 50px;">Modifier</a>
                             <a class="btn btn-outline-danger my-2 my-sm-0 btn-sm" href="gestionbiens.php?gerer=supprimer&IDannonce=<?php echo $annonce->id_annonce; ?>">Supprimer</a>
                         </div>

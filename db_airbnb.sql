@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 04 juin 2020 à 16:33
+-- Généré le : ven. 05 juin 2020 à 10:55
 -- Version du serveur :  10.4.11-MariaDB
 -- Version de PHP : 7.4.4
 
@@ -31,9 +31,12 @@ CREATE TABLE `annonce` (
   `id_annonce` int(5) NOT NULL,
   `id_compte` int(5) DEFAULT NULL,
   `titre` varchar(50) DEFAULT NULL,
-  `description` text DEFAULT NULL,
+  `descript` text DEFAULT NULL,
   `nb_places` varchar(2) DEFAULT NULL,
-  `adresse` text DEFAULT NULL,
+  `numerorue` int(2) DEFAULT NULL,
+  `nomrue` varchar(50) DEFAULT NULL,
+  `ville` varchar(50) DEFAULT NULL,
+  `codepostal` int(5) DEFAULT NULL,
   `prix` varchar(5) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -117,19 +120,19 @@ ALTER TABLE `reservation`
 -- AUTO_INCREMENT pour la table `annonce`
 --
 ALTER TABLE `annonce`
-  MODIFY `id_annonce` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_annonce` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT pour la table `compte`
 --
 ALTER TABLE `compte`
-  MODIFY `id_compte` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_compte` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT pour la table `photos`
 --
 ALTER TABLE `photos`
-  MODIFY `id_photo` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_photo` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT pour la table `reservation`
