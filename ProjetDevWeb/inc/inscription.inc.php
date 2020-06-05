@@ -24,7 +24,5 @@
        
     mail($to, $subject, $emailmessage, $headers);
     mail($from, $subject2, $emailmessage, $headers2);
-    
-    
-}
-    ?>
+
+?>
