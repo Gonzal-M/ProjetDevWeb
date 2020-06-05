@@ -1,21 +1,27 @@
 <?php require_once("inc/header.inc.php"); ?>
 
+<script type ="text/javascript">
+    function lettersOnly(input) {
+        var regex = /[^a-z]/gi;
+        input.value = input.value.replace(regex,"");
+    }
+    </script>
 
 <div class="starter-template">  
 
     <br><h1>Créer un compte</h1>
     <p><span style="color: red;">*</span>Champs obligatoires</p>
-
+   
     <form method="POST" enctype='multipart/form-data'>
 
         <div class="form-group">
             <label for="prenom">Prénom<span style="color: red;">*</span></label>
-            <input type="texte" class="form-control" id="prenom" name="prenom" maxlength = "20" placeholder="Prénom">
+            <input type="texte" class="form-control" id="prenom" name="prenom" maxlength = "20" placeholder="Prénom" onkeyup="lettersOnly(this)">
         </div>
 
         <div class="form-group">
             <label for="nom">Nom<span style="color: red;">*</span></label>
-            <input type="texte" class="form-control" id="nom" name="nom" maxlength = "20" placeholder="Nom de famille">
+            <input type="texte" class="form-control" id="nom" name="nom" maxlength = "20" placeholder="Nom de famille" onkeyup="lettersOnly(this)">
         </div>
 
         <div class="form-group">
@@ -40,7 +46,7 @@
 
         <div class="form-group">
             <label for="solde">Solde<span style="color: red;">*</span></label>
-            <input type="number" class="form-control" id="solde" name="solde" min="0" max="99999" placeholder="L'argent que vous souhaitez utiliser (en euros, jusqu'à 99.999€)">
+            <input type="number" class="form-control" id="solde" name="solde" min="0" max="99999" placeholder="L'argent que vous souhaitez utiliser (en euros, jusqu'à 99.999€)" onkeydown="return event.keyCode !== 69">
         </div>
 
         <br><button type="submit" class="btn btn-primary" name="submit">Valider</button>
