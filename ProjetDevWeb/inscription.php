@@ -77,32 +77,51 @@
     }
     // ^Si la photo n'a pas été ajoutée, la photo par défaut est choisie
     
-    if($_POST["mdp1"]==$_POST["mdp2"]){
-        // ^Vérifie que les mots de passe sont identiques
 
-        $requeteSQL = "INSERT INTO compte (prenom, nom, email, mdp, nomphoto, solde) ";
-        $requeteSQL .= "VALUE ('$_POST[prenom]', '$_POST[nom]', '$_POST[email]', '$_POST[mdp1]', '$_POST[nomphoto]', '$_POST[solde]')";
-
-        $pdo->exec($requeteSQL);
-        //^Enregistre les données dans la base de données
-
-        $result = $pdo->query("SELECT id_compte FROM compte WHERE email='$_POST[email]'"); 
-        $userID = $result->fetch(PDO::FETCH_OBJ);
-        $_SESSION["userID"]=$userID->id_compte;
-        // ^Connecte l'utilisateur
-
-        require_once("inc/inscription.inc.php");
-        // ^Envoie mail de confirmation
-
-        header("Location:index.php");
-        // ^Retourne à la page d'accueil
-    }    
-
-    else{
-        echo("<p style='color: red;'>Les mots de passe sont différents</p>");
+    $emails = $pdo->query("SELECT email FROM compte");
+    $emailexists = false;
+    while ($email = $emails->fetch(PDO::FETCH_OBJ)) {
+        if($email==$_POST){
+            $emailexists=true;
+        }
     }
-} else if(!empty($_POST)){
-    echo("<p style='color: red;'>Vous n'avez pas rempli tous les champs</p>");
-}
+    // ^Vérifie s'il y a déjà un compte qui utilise cette adresse email
+    
+    if($emailexists==true){
+        echo("<p style='color: red;'>Cette adresse email est déjà utilisée</p>");
+    }
+    else{
+        if($_POST["mdp1"]==$_POST["mdp2"]){
+            // ^Vérifie que les mots de passe sont identiques
+    
+            $requeteSQL = "INSERT INTO compte (prenom, nom, email, mdp, nomphoto, solde) ";
+            $requeteSQL .= "VALUE ('$_POST[prenom]', '$_POST[nom]', '$_POST[email]', '$_POST[mdp1]', '$_POST[nomphoto]', '$_POST[solde]')";
+    
+            $pdo->exec($requeteSQL);
+            //^Enregistre les données dans la base de données
+    
+            $result = $pdo->query("SELECT id_compte FROM compte WHERE email='$_POST[email]'"); 
+            $userID = $result->fetch(PDO::FETCH_OBJ);
+            $_SESSION["userID"]=$userID->id_compte;
+            // ^Connecte l'utilisateur
+    
+            require_once("inc/inscription.inc.php");
+            // ^Envoie mail de confirmation
+    
+            header("Location:index.php");
+            // ^Retourne à la page d'accueil
+        }    
+    
+        else{
+            echo("<p style='color: red;'>Les mots de passe sont différents</p>");
+        }
+    } else if(!empty($_POST)){
+        echo("<p style='color: red;'>Vous n'avez pas rempli tous les champs</p>");
+    }
+    }
+
+
+
+    
 
 require_once("inc/footer.inc.php"); ?>
