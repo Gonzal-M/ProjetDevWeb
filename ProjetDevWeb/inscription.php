@@ -1,5 +1,4 @@
 <?php require_once("inc/header.inc.php"); ?>
-<?php require_once("inc/inscription.inc.php"); ?>
 
 
 <div class="starter-template">  
@@ -91,6 +90,9 @@
         $userID = $result->fetch(PDO::FETCH_OBJ);
         $_SESSION["userID"]=$userID->id_compte;
         // ^Connecte l'utilisateur
+
+        require_once("inc/inscription.inc.php");
+        // ^Envoie mail de confirmation
 
         header("Location:index.php");
         // ^Retourne à la page d'accueil

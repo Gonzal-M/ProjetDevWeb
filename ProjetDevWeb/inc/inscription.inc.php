@@ -1,5 +1,4 @@
 <?php
-    if (isset($_POST['submit'])) {
     
     $to = "airbnbynov@gmail.com"; 
     $from = $_POST['email']; 
