@@ -1,74 +1,77 @@
 <p><span style="color: red;">*</span>Champs obligatoires</p><br>     
 
-<?php $result = $pdo->query("SELECT * FROM annonces WHERE id_annonce = '$_GET[IDannonce]'"); 
+<?php $result = $pdo->query("SELECT * FROM annonce WHERE id_annonce = '$_GET[IDannonce]'"); 
 $annonce = $result->fetch(PDO::FETCH_OBJ);?>
 
 <form method="POST" enctype='multipart/form-data'>
 
     <div class="form-group">
         <label for="titre">Titre<span style="color: red;">*</span></label>
-        <input type="texte" class="form-control" id="titre" name="titre" value="<?php $annonce->titre; ?>" maxlength = "50">
+        <input type="texte" class="form-control" id="titre" name="titre" value="<?php echo $annonce->titre; ?>" maxlength = "50">
     </div>
 
     <h7>Adresse :</h7>
     <div class="form-group">
         <label for="numerorue">Numéro de rue<span style="color: red;">*</span></label>
-        <input type="number" class="form-control" id="numerorue" name="numerorue" min="1" max="99" value="<?php $annonce->numerorue; ?>">
+        <input type="number" class="form-control" id="numerorue" name="numerorue" min="1" max="99" value="<?php echo $annonce->numerorue; ?>">
     </div>
 
     <div class="form-group">
         <label for="nomrue">Nom de la rue<span style="color: red;">*</span></label>
-        <input type="texte" class="form-control" id="nomrue" name="nomrue" maxlength="50" value="<?php $annonce->nomrue; ?>">
+        <input type="texte" class="form-control" id="nomrue" name="nomrue" maxlength="50" value="<?php echo $annonce->nomrue; ?>">
     </div>
 
     <div class="form-group">
         <label for="codepostal">Code Postal<span style="color: red;">*</span></label>
-        <input type="number" class="form-control" id="codepostal" name="codepostal" min="1000" max="99999" value="<?php $annonce->codepostal; ?>">
+        <input type="number" class="form-control" id="codepostal" name="codepostal" min="1000" max="99999" value="<?php echo $annonce->codepostal; ?>">
     </div>
 
     <div class="form-group">
         <label for="ville">Ville<span style="color: red;">*</span></label>
-        <input type="texte" class="form-control" id="ville" name="ville" maxlength="50" value="<?php $annonce->ville; ?>">
+        <input type="texte" class="form-control" id="ville" name="ville" maxlength="50" value="<?php echo $annonce->ville; ?>">
     </div>
 
     <div class="form-group">
         <label for="description">Description<span style="color: red;">*</span></label>
-        <textarea rows="10" class="form-control" id="description" name="description" value="<?php $annonce->descript; ?>"></textarea>
+        <textarea rows="10" class="form-control" id="description" name="description"><?php echo $annonce->descript; ?></textarea>
     </div>
 
     <div class="form-group">
         <label for="nbplaces">Nombre de places<span style="color: red;">*</span></label>
-        <input type="number" class="form-control" id="nbplaces" name="nbplaces" min="0" max="99" value="<?php $annonce->nb_places; ?>">
+        <input type="number" class="form-control" id="nbplaces" name="nbplaces" min="0" max="99" value="<?php echo $annonce->nb_places; ?>">
     </div>
 
     <div class="form-group">
         <label for="prix">Prix<span style="color: red;">*</span></label>
-        <input type="number" class="form-control" id="prix" name="prix" min="0" max="99999" value="<?php $annonce->prix; ?>">
+        <input type="number" class="form-control" id="prix" name="prix" min="0" max="99999" value="<?php echo $annonce->prix; ?>">
     </div>
     
-    <p>Supprimer des photos</p>
+    <h5>Supprimer des photos</h5>
     <div class="card-group">
 
     <?php $photos = $pdo->query("SELECT * FROM photos WHERE id_annonce='$annonce->id_annonce'");
-    while ($pdo->query("SELECT COUNT(*) FROM photos") > 1){
+    
+    $nbphotos = $pdo->query("SELECT COUNT(*) FROM photos")->fetchAll();
+
+    //while (intval($nbphotos[0]["COUNT(*)"]) > 0){
         while($photo = $photos->fetch(PDO::FETCH_OBJ)){ ?> 
 
             <div class="card">
-                <a class="btn btn-outline-info my-2 my-sm-0 btn-sm" href="gestionbiens.php?gerer=modifier&IDannonce=<?php echo $annonce->id_annonce; ?>&delphoto=<?php echo $photo->id_photo; ?>">
+                <a class="btn btn-outline-danger my-2 my-sm-0 btn-sm" href="gestionbiens.php?gerer=modifier&IDannonce=<?php echo $annonce->id_annonce; ?>&delphoto=<?php echo $photo->id_photo; ?>">
                     <img src="img/annonces/<?php echo $photo->nomphoto; ?>" class="card-img-top" alt="Photo de l'annonce">
                 </a>
             </div>
 
         <?php }
-    } ?>
+    //} ?>
     </div>
-    <?php if($pdo->query("SELECT COUNT(*) FROM photos" == 1){
-        echo "<p><span style='color: red;'>*</span>Vous n'avez pas assez de photos pour en supprimer</p>"
+    <?php if(intval($nbphotos[0]["COUNT(*)"]) == 1){
+        echo "<p><span style='color: red;'>*</span>Vous n'avez pas assez de photos pour en supprimer</p>";
     } ?>
     
 
     <div class="form-group">
-        <label for="img">Ajouter des photos</label>
+        <h5>Ajouter des photos</h5>
         <input type="file" class="form-control-file" id="img" name="img[]" multiple>
     </div>
 
