@@ -45,50 +45,13 @@ $annonce = $result->fetch(PDO::FETCH_OBJ);?>
         <label for="prix">Prix<span style="color: red;">*</span></label>
         <input type="number" class="form-control" id="prix" name="prix" min="0" max="99999" value="<?php echo $annonce->prix; ?>">
     </div>
-    
-    <h5>Supprimer des photos</h5>
-    <div class="card-group">
-
-    <?php $photos = $pdo->query("SELECT * FROM photos WHERE id_annonce='$annonce->id_annonce'");
-    
-    $nbphotos = $pdo->query("SELECT COUNT(*) FROM photos")->fetchAll();
-
-    //while (intval($nbphotos[0]["COUNT(*)"]) > 0){
-        while($photo = $photos->fetch(PDO::FETCH_OBJ)){ ?> 
-
-            <div class="card">
-                <a class="btn btn-outline-danger my-2 my-sm-0 btn-sm" href="gestionbiens.php?gerer=modifier&IDannonce=<?php echo $annonce->id_annonce; ?>&delphoto=<?php echo $photo->id_photo; ?>">
-                    <img src="img/annonces/<?php echo $photo->nomphoto; ?>" class="card-img-top" alt="Photo de l'annonce">
-                </a>
-            </div>
-
-        <?php }
-    //} ?>
-    </div>
-    <?php if(intval($nbphotos[0]["COUNT(*)"]) == 1){
-        echo "<p><span style='color: red;'>*</span>Vous n'avez pas assez de photos pour en supprimer</p>";
-    } ?>
-    
-
-    <div class="form-group">
-        <h5>Ajouter des photos</h5>
-        <input type="file" class="form-control-file" id="img" name="img[]" multiple>
-    </div>
 
     <button type="submit" class="btn btn-primary">Modifier une annonce</button>
-    
-</form>
-
-<br><a href="gestionbiens.php" class="btn btn-primary">Retour</a><br><br><br>
+    <a class="btn btn-primary" href="photoannonce.php?IDannonce=<?php echo $_GET['IDannonce']; ?>">Modifier les photos</a>
+    <a class="btn btn-primary" href="gestionbiens.php">Retour</a>
+</form><br>
 
 <?php 
-if(isset($_GET["delphoto"])){
-    $photo = $pdo->query("SELECT nomphoto FROM photos WHERE id_photo = '$_GET[delphoto]'");
-    $photo = $photo->fetch(PDO::FETCH_OBJ);
-    unlink("img/annonces/$photo->nomphoto");
-    $pdo->exec("DELETE FROM photos WHERE id_photo = '$_GET[delphoto]'");
-}
-
 if(!empty($_POST["titre"]) && !empty($_POST["numerorue"]) && !empty($_POST["nomrue"]) && !empty($_POST["codepostal"]) && !empty($_POST["ville"]) && !empty($_POST["description"]) && !empty($_POST["titre"]) && !empty($_POST["nbplaces"]) && !empty($_POST["prix"])){
 
     $_POST["titre"] = htmlentities($_POST["titre"], ENT_QUOTES);
@@ -107,18 +70,6 @@ if(!empty($_POST["titre"]) && !empty($_POST["numerorue"]) && !empty($_POST["nomr
     $requeteSQL .= "WHERE id_annonce='$_GET[IDannonce]'";
 
     $pdo->exec($requeteSQL);
-    if(isset($_FILES["img"])){
-        $name = "";
-        foreach ($_FILES["img"]["error"] as $key => $error) {
-            if ($error == UPLOAD_ERR_OK) {
-                $tmp_name = $_FILES["img"]["tmp_name"][$key];
-                $name = basename($_FILES["img"]["name"][$key]);
-                move_uploaded_file($tmp_name, "img/annonces/$name");
-                $requeteSQL = "INSERT INTO photos (id_annonce, nomphoto) VALUE ('$_GET[IDannonce]','$name')";
-                $pdo->exec($requeteSQL);
-            }
-        }
-    }
 
     header("Location:gestionbiens.php");
 
