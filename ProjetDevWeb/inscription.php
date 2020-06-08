@@ -65,8 +65,9 @@
     $_POST["solde"] = htmlentities($_POST["solde"], ENT_QUOTES);
     // ^Vérifie que les données entrées ne contiennent pas de code
 
-    $name = "";
-    if (isset($_FILES)) {
+    $name = "profilepicture.jpg";
+    // ^Photo de profile par défaut
+    if (isset($_FILES["img"])) {
         foreach ($_FILES["img"]["error"] as $key => $error) {
             if ($error == UPLOAD_ERR_OK) {
                 $tmp_name = $_FILES["img"]["tmp_name"][$key];
@@ -75,14 +76,7 @@
             }
         }
     }
-    // ^Vérifie que le fichier est bon, enregistre son nom dans $name et l'enregistre dans le dossier img/
-        
-    
-    else{
-        $name="profilepicture.jpg";
-    }
-    // ^Si la photo n'a pas été ajoutée, la photo par défaut est choisie
-    
+    // ^Vérifie que le fichier est bon, enregistre son nom dans $name et l'enregistre dans le dossier img/profile/      
 
     $emails = $pdo->query("SELECT email FROM compte");
     $emailexists = false;

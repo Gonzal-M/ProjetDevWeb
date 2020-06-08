@@ -1,19 +1,5 @@
 <?php require_once("inc/header.inc.php"); ?>
 
-<!--
-    Page de biens
-    Permet à l'utilisateur de gérer les biens qu'il a mis en location
-    Nécessite une connexion
-
-    Une annonce doit contenir :
-    - un titre
-    - une description
-    - une ou plusieurs photos
-    - un nombre de places
-    - une adresse
-    - un prix par nuitée par personne
--->
-
 <div class="starter-template">  
 
     <br><h1>Gestion des biens mis en location</h1><br>
