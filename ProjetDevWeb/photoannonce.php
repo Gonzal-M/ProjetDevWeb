@@ -4,7 +4,7 @@
 <?php if(isset($_GET["IDannonce"])){ ?>
     <h5>Supprimer des photos (<span style='color: red;'>*</span>1 minimum)</h5>
 
-    <?php $photos = $pdo->query("SELECT * FROM photos WHERE id_annonce='$_GET[IDannonce]'");
+    <?php $photos = $pdo->query("SELECT * FROM photos WHERE id_annonce = $_GET[IDannonce]");
     
     $nbphotos = $pdo->query("SELECT COUNT(*) FROM photos")->fetchAll();
 
@@ -21,18 +21,22 @@
         echo "<p><span style='color: red;'>*</span>Vous n'avez pas assez de photos pour en supprimer</p>";
     } ?>
     
+    <form method="POST" enctype='multipart/form-data'>
+        <div class="form-group">
+            <h5>Ajouter des photos</h5>
+            <input type="file" class="form-control-file" id="img" name="img[]" multiple>
+        </div>
 
-    <div class="form-group">
-        <h5>Ajouter des photos</h5>
-        <input type="file" class="form-control-file" id="img" name="img[]" multiple>
-    </div>
+        <button type="submit" class="btn btn-primary">Ajouter une photo</button>
+        <a class="btn btn-primary" href="gestionbiens.php">Retour</a>
+    </form><br>
 
     <?php if(isset($_GET["delphoto"])){
         $photo = $pdo->query("SELECT nomphoto FROM photos WHERE id_photo = '$_GET[delphoto]'");
         $photo = $photo->fetch(PDO::FETCH_OBJ);
         unlink("img/annonces/$photo->nomphoto");
-        $pdo->exec("DELETE FROM photos WHERE id_photo = '$_GET[delphoto]'");
-        header("Location:gestionbiens.php?IDannonce='$_GET[IDannonce]'");
+        $pdo->exec("DELETE FROM photos WHERE id_photo = $_GET[delphoto]");
+        header("Location:photoannonce.php?IDannonce=$_GET[IDannonce]");
     } 
 
     if(isset($_FILES["img"])){
@@ -46,6 +50,7 @@
                 $pdo->exec($requeteSQL);
             }
         }
+        header("Location:photoannonce.php?IDannonce=$_GET[IDannonce]");
     }
 
 }else{
