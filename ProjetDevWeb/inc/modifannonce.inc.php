@@ -43,7 +43,7 @@ $annonce = $result->fetch(PDO::FETCH_OBJ);?>
 
     <div class="form-group">
         <label for="prix">Prix<span style="color: red;">*</span></label>
-        <input type="number" class="form-control" id="prix" name="prix" min="0" max="99999" value="<?php echo $annonce->prix; ?>">
+        <input type="number" class="form-control" id="prix" name="prix" min="1" max="99999" value="<?php echo $annonce->prix; ?>">
     </div>
 
     <button type="submit" class="btn btn-primary">Modifier une annonce</button>

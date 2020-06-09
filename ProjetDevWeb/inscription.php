@@ -1,12 +1,5 @@
 <?php require_once("inc/header.inc.php"); ?>
 
-<script type ="text/javascript">
-    function lettersOnly(input) {
-        var regex = /[^a-z]/gi;
-        input.value = input.value.replace(regex,"");
-    }
-    </script>
-
 <div class="starter-template">  
 
     <br><h1>Créer un compte</h1>
@@ -49,7 +42,7 @@
             <input type="number" class="form-control" id="solde" name="solde" min="0" max="99999" placeholder="L'argent que vous souhaitez utiliser (en euros, jusqu'à 99.999€)" onkeydown="return event.keyCode !== 69">
         </div>
 
-        <br><button type="submit" class="btn btn-primary" name="submit">Valider</button>
+        <br><button type="submit" class="btn btn-primary">Valider</button>
         <a class="btn btn-primary" href="index.php">Retour</a>
 
     </form><br>

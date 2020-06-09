@@ -40,7 +40,7 @@
 
     <div class="form-group">
         <label for="prix">Prix<span style="color: red;">*</span></label>
-        <input type="number" class="form-control" id="prix" name="prix" min="0" max="99999" placeholder="Le prix de location (par nuit, par personne)">
+        <input type="number" class="form-control" id="prix" name="prix" min="1" max="99999" placeholder="Le prix de location (par nuit, par personne)">
     </div>
     
     <div class="form-group">

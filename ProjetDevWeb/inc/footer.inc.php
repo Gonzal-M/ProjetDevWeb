@@ -10,5 +10,13 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     
     <script src="js/script.js" defer></script>
+
+    <!-- Force les champs a ne pas contenir de chiffres -->
+    <script type ="text/javascript">
+        function lettersOnly(input) {
+            var regex = /[^a-z]/gi;
+            input.value = input.value.replace(regex,"");
+        }
+    </script>
   </body>
 </html>
