@@ -21,13 +21,13 @@
         echo "<p><span style='color: red;'>*</span>Vous n'avez pas assez de photos pour en supprimer</p>";
     } ?>
     
-    <form method="POST" enctype='multipart/form-data'>
+    <br><form method="POST" enctype='multipart/form-data'>
         <div class="form-group">
             <h5>Ajouter des photos</h5>
             <input type="file" class="form-control-file" id="img" name="img[]" multiple>
         </div>
 
-        <button type="submit" class="btn btn-primary">Ajouter une photo</button>
+        <br><button type="submit" class="btn btn-primary">Ajouter une photo</button>
         <a class="btn btn-primary" href="gestionbiens.php">Retour</a>
     </form><br>
 

@@ -11,16 +11,19 @@
 
     <form method="POST">
 
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" name="email" maxlength = "50" placeholder="Adresse email (1-50 caractères)">
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" maxlength = "50" placeholder="Adresse email (1-50 caractères)">
+            </div>
         </div>
 
-        <div class="form-group">
-            <label for="mdp">Mot de passe</label>
-            <input type="password" class="form-control" id="mdp" name="mdp" maxlength = "50" placeholder="Mot de passe (1-50 caractères)">
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="mdp">Mot de passe</label>
+                <input type="password" class="form-control" id="mdp" name="mdp" maxlength = "50" placeholder="Mot de passe (1-50 caractères)">
+            </div>
         </div>
-
         <br><button type="submit" class="btn btn-primary">Valider</button>
         <a class="btn btn-primary" href="index.php">Retour</a>
 

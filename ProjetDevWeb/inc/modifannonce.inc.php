@@ -5,45 +5,55 @@ $annonce = $result->fetch(PDO::FETCH_OBJ);?>
 
 <form method="POST" enctype='multipart/form-data'>
 
-    <div class="form-group">
-        <label for="titre">Titre<span style="color: red;">*</span></label>
-        <input type="texte" class="form-control" id="titre" name="titre" value="<?php echo $annonce->titre; ?>" maxlength = "50">
+    <div class="row">
+        <div class="form-group col-md-7">
+            <label for="titre">Titre<span style="color: red;">*</span></label>
+            <input type="texte" class="form-control" id="titre" name="titre" value="<?php echo $annonce->titre; ?>" maxlength = "50">
+        </div>
     </div>
 
     <h7>Adresse :</h7>
-    <div class="form-group">
-        <label for="numerorue">Numéro de rue<span style="color: red;">*</span></label>
-        <input type="number" class="form-control" id="numerorue" name="numerorue" min="1" max="99" value="<?php echo $annonce->numerorue; ?>">
+    <div class="row">
+        <div class="form-group col-md-2">
+            <label for="numerorue">Numéro de rue<span style="color: red;">*</span></label>
+            <input type="number" class="form-control" id="numerorue" name="numerorue" min="1" max="99" value="<?php echo $annonce->numerorue; ?>">
+        </div>
+
+        <div class="form-group col-md-5">
+            <label for="nomrue">Nom de la rue<span style="color: red;">*</span></label>
+            <input type="texte" class="form-control" id="nomrue" name="nomrue" maxlength="50" value="<?php echo $annonce->nomrue; ?>">
+        </div>
     </div>
 
-    <div class="form-group">
-        <label for="nomrue">Nom de la rue<span style="color: red;">*</span></label>
-        <input type="texte" class="form-control" id="nomrue" name="nomrue" maxlength="50" value="<?php echo $annonce->nomrue; ?>">
+    <div class="row">
+        <div class="form-group col-md-2">
+            <label for="codepostal">Code Postal<span style="color: red;">*</span></label>
+            <input type="number" class="form-control" id="codepostal" name="codepostal" min="1000" max="99999" value="<?php echo $annonce->codepostal; ?>">
+        </div>
+
+        <div class="form-group col-md-5">
+            <label for="ville">Ville<span style="color: red;">*</span></label>
+            <input type="texte" class="form-control" id="ville" name="ville" maxlength="50" value="<?php echo $annonce->ville; ?>">
+        </div>
     </div>
 
-    <div class="form-group">
-        <label for="codepostal">Code Postal<span style="color: red;">*</span></label>
-        <input type="number" class="form-control" id="codepostal" name="codepostal" min="1000" max="99999" value="<?php echo $annonce->codepostal; ?>">
+    <div class="row">
+        <div class="form-group col-md-7">
+            <label for="description">Description<span style="color: red;">*</span></label>
+            <textarea rows="5" class="form-control" id="description" name="description"><?php echo $annonce->descript; ?></textarea>
+        </div>
     </div>
 
-    <div class="form-group">
-        <label for="ville">Ville<span style="color: red;">*</span></label>
-        <input type="texte" class="form-control" id="ville" name="ville" maxlength="50" value="<?php echo $annonce->ville; ?>">
-    </div>
+    <div class="row">
+        <div class="form-group col-md-3">
+            <label for="nbplaces">Nombre de places<span style="color: red;">*</span></label>
+            <input type="number" class="form-control" id="nbplaces" name="nbplaces" min="0" max="99" value="<?php echo $annonce->nb_places; ?>">
+        </div>
 
-    <div class="form-group">
-        <label for="description">Description<span style="color: red;">*</span></label>
-        <textarea rows="10" class="form-control" id="description" name="description"><?php echo $annonce->descript; ?></textarea>
-    </div>
-
-    <div class="form-group">
-        <label for="nbplaces">Nombre de places<span style="color: red;">*</span></label>
-        <input type="number" class="form-control" id="nbplaces" name="nbplaces" min="0" max="99" value="<?php echo $annonce->nb_places; ?>">
-    </div>
-
-    <div class="form-group">
-        <label for="prix">Prix<span style="color: red;">*</span></label>
-        <input type="number" class="form-control" id="prix" name="prix" min="1" max="99999" value="<?php echo $annonce->prix; ?>">
+        <div class="form-group col-md-4">
+            <label for="prix">Prix<span style="color: red;">*</span></label>
+            <input type="number" class="form-control" id="prix" name="prix" min="1" max="99999" value="<?php echo $annonce->prix; ?>">
+        </div>
     </div>
 
     <button type="submit" class="btn btn-primary">Modifier une annonce</button>

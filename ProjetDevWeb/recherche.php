@@ -5,34 +5,39 @@
     <br><h1>Rechercher une location</h1>
 
     <form method="POST" enctype='multipart/form-data'>
-
+        
+        
         <div class="form-group">
             <label for="ville">Ville</label>
             <input type="texte" class="form-control" id="ville" name="ville" maxlength = "50" placeholder="Ville de la location" onkeyup="lettersOnly(this)">
         </div>
 
-        <div class="form-group">
-            <label for="nbplaces">Nombre de places</label>
-            <input type="number" class="form-control" id="nbplaces" name="nbplaces" min="1" max="99" placeholder="Nombre de places dans la location">
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label for="nbplaces">Nombre de places</label>
+                <input type="number" class="form-control" id="nbplaces" name="nbplaces" min="1" max="99" placeholder="Nombre de places dans la location">
+            </div>
+
+            <div class="form-group col">
+                <label for="prixmin">Prix minimum</label>
+                <input type="number" class="form-control" id="prixmin" name="prixmin" min="1" max="99999" placeholder="Prix minimum de la location">
+            </div>
+            <div class="form-group col">
+                <label for="prixmax">Prix maximum</label>
+                <input type="number" class="form-control" id="prixmax" name="prixmax" min="1" max="99999" placeholder="Prix maximum de la location">
+            </div>
         </div>
 
-        <div class="form-group">
-            <label for="prixmin">Prix minimum</label>
-            <input type="number" class="form-control" id="prixmin" name="prixmin" min="1" max="99999" placeholder="Prix minimum de la location">
-        </div>
-        <div class="form-group">
-            <label for="prixmax">Prix maximum</label>
-            <input type="number" class="form-control" id="prixmax" name="prixmax" min="1" max="99999" placeholder="Prix maximum de la location">
-        </div>
+        <div class="row">
+            <div class="form-group col">
+                <label for="datearr">Date d'arrivée</label>
+                <input type="date" class="form-control" id="datearr" name="datearr">
+            </div>
 
-        <div class="form-group">
-            <label for="datearr">Date d'arrivée</label>
-            <input type="date" class="form-control" id="datearr" name="datearr">
-        </div>
-
-        <div class="form-group">
-            <label for="datedep">Date de départ</label>
-            <input type="date" class="form-control" id="datedep" name="datedep">
+            <div class="form-group col">
+                <label for="datedep">Date de départ</label>
+                <input type="date" class="form-control" id="datedep" name="datedep">
+            </div>
         </div>
 
         <br><button type="submit" class="btn btn-primary">Valider</button>
@@ -112,11 +117,13 @@ while($annonce = $annonces->fetch(PDO::FETCH_OBJ)){ ?>
             <div class="col-md-8">
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $annonce->titre; ?></h5>
-                    <p class="card-text"><?php echo $annonce->descript; ?></p>
+                    <p class="card-text">Ville : <?php echo $annonce->ville; ?></p>
+                    <p class="card-text"><?php echo substr($annonce->descript, 0, 50) . "..."; ?></p>
                     <a class="btn btn-outline-info my-2 my-sm-0 btn-sm" href="recherche.php?IDannonce=<?php echo $annonce->id_annonce; ?>">Détails</a>
                 </div>
             </div>
         </div>
     </div>
 <?php }
+
 require_once("inc/footer.inc.php"); ?>

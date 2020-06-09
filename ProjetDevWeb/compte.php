@@ -16,14 +16,16 @@ $user = $user->fetch(PDO::FETCH_OBJ);
    
     <form method="POST" enctype='multipart/form-data'>
 
-        <div class="form-group">
-            <label for="prenom">Prénom<span style="color: red;">*</span></label>
-            <input type="texte" class="form-control" id="prenom" name="prenom" maxlength = "20" value="<?php echo $user->prenom; ?>" onkeyup="lettersOnly(this)">
-        </div>
+        <div class="row">
+            <div class="form-group col">
+                <label for="prenom">Prénom<span style="color: red;">*</span></label>
+                <input type="texte" class="form-control" id="prenom" name="prenom" maxlength = "20" value="<?php echo $user->prenom; ?>" onkeyup="lettersOnly(this)">
+            </div>
 
-        <div class="form-group">
-            <label for="nom">Nom<span style="color: red;">*</span></label>
-            <input type="texte" class="form-control" id="nom" name="nom" maxlength = "20" value="<?php echo $user->nom; ?>" onkeyup="lettersOnly(this)">
+            <div class="form-group col">
+                <label for="nom">Nom<span style="color: red;">*</span></label>
+                <input type="texte" class="form-control" id="nom" name="nom" maxlength = "20" value="<?php echo $user->nom; ?>" onkeyup="lettersOnly(this)">
+            </div>
         </div>
 
         <div class="form-group">
@@ -31,20 +33,24 @@ $user = $user->fetch(PDO::FETCH_OBJ);
             <input type="email" class="form-control" id="email" name="email" maxlength = "50" value="<?php echo $user->email; ?>">
         </div>
 
-        <div class="form-group">
-            <label for="mdp1">Mot de passe<span style="color: red;">*</span></label>
-            <input type="password" class="form-control" id="mdp1" name="mdp1" maxlength = "50" value="<?php echo $user->mdp; ?>">
-        </div>
+        <div class="row">
+            <div class="form-group col">
+                <label for="mdp1">Mot de passe<span style="color: red;">*</span></label>
+                <input type="password" class="form-control" id="mdp1" name="mdp1" maxlength = "50" value="<?php echo $user->mdp; ?>">
+            </div>
 
-        <div class="form-group">
-            <label for="mdp2">Confirmer le mot de passe<span style="color: yelredlow;">*</span></label>
-            <input type="password" class="form-control" id="mdp2" name="mdp2" maxlength = "50" value="<?php echo $user->mdp; ?>">
+            <div class="form-group col">
+                <label for="mdp2">Confirmer le mot de passe<span style="color: yelredlow;">*</span></label>
+                <input type="password" class="form-control" id="mdp2" name="mdp2" maxlength = "50" value="<?php echo $user->mdp; ?>">
+            </div>
         </div>
-
-        <div class="form-group">
-            <img src="img/profile/<?php echo $user->nomphoto; ?>" alt="Votre photo de profil" style="height: 100px; width: 100px;">
-            <label for="img">Photo de profil</label>
-            <input type="file" class="form-control-file" id="img" name="img[]">
+        
+        <div class="form-group row">
+            <img src="img/profile/<?php echo $user->nomphoto; ?>" alt="Votre photo de profil" style="height: 150px;" class="col-md-2">
+            <div class="col">
+                <label for="img">Photo de profil</label>
+                <input type="file" class="form-control-file" id="img" name="img[]">
+            </div>
         </div>
 
         <br><button type="submit" class="btn btn-primary">Valider</button>

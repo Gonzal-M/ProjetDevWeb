@@ -7,14 +7,16 @@
    
     <form method="POST" enctype='multipart/form-data'>
 
-        <div class="form-group">
-            <label for="prenom">Prénom<span style="color: red;">*</span></label>
-            <input type="texte" class="form-control" id="prenom" name="prenom" maxlength = "20" placeholder="Prénom" onkeyup="lettersOnly(this)">
-        </div>
+        <div class="row">
+            <div class="form-group col">
+                <label for="prenom">Prénom<span style="color: red;">*</span></label>
+                <input type="texte" class="form-control" id="prenom" name="prenom" maxlength = "20" placeholder="Prénom" onkeyup="lettersOnly(this)">
+            </div>
 
-        <div class="form-group">
-            <label for="nom">Nom<span style="color: red;">*</span></label>
-            <input type="texte" class="form-control" id="nom" name="nom" maxlength = "20" placeholder="Nom de famille" onkeyup="lettersOnly(this)">
+            <div class="form-group col">
+                <label for="nom">Nom<span style="color: red;">*</span></label>
+                <input type="texte" class="form-control" id="nom" name="nom" maxlength = "20" placeholder="Nom de famille" onkeyup="lettersOnly(this)">
+            </div>
         </div>
 
         <div class="form-group">
@@ -22,14 +24,16 @@
             <input type="email" class="form-control" id="email" name="email" maxlength = "50" placeholder="Adresse email (1-50 caractères)">
         </div>
 
-        <div class="form-group">
-            <label for="mdp1">Mot de passe<span style="color: red;">*</span></label>
-            <input type="password" class="form-control" id="mdp1" name="mdp1" maxlength = "50" placeholder="Mot de passe (1-50 caractères)">
-        </div>
+        <div class="row">
+            <div class="form-group col">
+                <label for="mdp1">Mot de passe<span style="color: red;">*</span></label>
+                <input type="password" class="form-control" id="mdp1" name="mdp1" maxlength = "50" placeholder="Mot de passe (1-50 caractères)">
+            </div>
 
-        <div class="form-group">
-            <label for="mdp2">Confirmer le mot de passe<span style="color: red;">*</span></label>
-            <input type="password" class="form-control" id="mdp2" name="mdp2" maxlength = "50" placeholder="Confirmer le mot de passe">
+            <div class="form-group col">
+                <label for="mdp2">Confirmer le mot de passe<span style="color: red;">*</span></label>
+                <input type="password" class="form-control" id="mdp2" name="mdp2" maxlength = "50" placeholder="Confirmer le mot de passe">
+            </div>
         </div>
 
         <div class="form-group">
@@ -37,11 +41,13 @@
             <input type="file" class="form-control-file" id="img" name="img[]">
         </div>
 
-        <div class="form-group">
-            <label for="solde">Solde<span style="color: red;">*</span></label>
-            <input type="number" class="form-control" id="solde" name="solde" min="0" max="99999" placeholder="L'argent que vous souhaitez utiliser (en euros, jusqu'à 99.999€)" onkeydown="return event.keyCode !== 69">
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="solde">Solde<span style="color: red;">*</span></label>
+                <input type="number" class="form-control" id="solde" name="solde" min="0" max="99999" placeholder="L'argent que vous souhaitez utiliser (en euros, jusqu'à 99.999€)" onkeydown="return event.keyCode !== 69">
+            </div>
         </div>
-
+        
         <br><button type="submit" class="btn btn-primary">Valider</button>
         <a class="btn btn-primary" href="index.php">Retour</a>
 
