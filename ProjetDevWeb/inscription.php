@@ -18,10 +18,15 @@
                 <input type="texte" class="form-control" id="nom" name="nom" maxlength = "20" placeholder="Nom de famille" onkeyup="lettersOnly(this)">
             </div>
         </div>
-
-        <div class="form-group">
-            <label for="email">Email<span style="color: red;">*</span></label>
-            <input type="email" class="form-control" id="email" name="email" maxlength = "50" placeholder="Adresse email (1-50 caractères)">
+        <div class="row">
+            <div class="form-group col">
+                <label for="email">Email<span style="color: red;">*</span></label>
+                <input type="email" class="form-control" id="email" name="email" maxlength = "50" placeholder="Adresse email (1-50 caractères)">
+            </div>
+            <div class="form-group col">
+                <label for="tel">Numéro de téléphone</label>
+                <input type="texte" class="form-control" id="tel" name="tel" maxlength = "14" placeholder="Numéro de téléphone (0-14 caractères)">
+            </div>
         </div>
 
         <div class="row">
@@ -36,15 +41,22 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <label for="img">Photo de profil</label>
-            <input type="file" class="form-control-file" id="img" name="img[]">
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label for="img">Photo de profil</label>
+                <input type="file" class="form-control-file" id="img" name="img[]">
+            </div>
+
+            <div class="form-group col-md-8">
+                <label for="solde">Solde<span style="color: red;">*</span></label>
+                <input type="number" class="form-control" id="solde" name="solde" min="0" max="99999" placeholder="L'argent que vous souhaitez utiliser (en euros, jusqu'à 99.999€)" onkeydown="return event.keyCode !== 69">
+            </div>
         </div>
 
         <div class="row">
-            <div class="form-group col-md-6">
-                <label for="solde">Solde<span style="color: red;">*</span></label>
-                <input type="number" class="form-control" id="solde" name="solde" min="0" max="99999" placeholder="L'argent que vous souhaitez utiliser (en euros, jusqu'à 99.999€)" onkeydown="return event.keyCode !== 69">
+            <div class="form-group col">
+                <label for="presentation">Présentation</label>
+                <textearea rows="5" maxlength="300" class="form-control" id="presentation" name="presentation" placeholder="Présentez-vous ! (0-300 caractères)"></textarea>
             </div>
         </div>
         
@@ -93,9 +105,25 @@
         if($_POST["mdp1"]==$_POST["mdp2"]){
             // ^Vérifie que les mots de passe sont identiques
     
-            $requeteSQL = "INSERT INTO compte (prenom, nom, email, mdp, nomphoto, solde) ";
-            $requeteSQL .= "VALUE ('$_POST[prenom]', '$_POST[nom]', '$_POST[email]', '$_POST[mdp1]', '$name', '$_POST[solde]')";
-    
+            $requeteSQL = "INSERT INTO compte (prenom, nom, email, mdp, nomphoto, solde, tel, presentation) ";
+            $requeteSQL .= "VALUE ('$_POST[prenom]', '$_POST[nom]', '$_POST[email]', '$_POST[mdp1]', '$name', '$_POST[solde]'";
+            
+            //numéro de téléphone (champs non obligatoire)
+            if(!empty($_POST["tel"])){
+                $_POST["tel"] = htmlentities($_POST["tel"], ENT_QUOTES);
+                $requeteSQL .= ", '$_POST[tel]'";
+            }else{
+                $requeteSQL .= ", 'Non renseigné'";
+            }
+
+            //presentation (champs non obligatoire)
+            if(!empty($_POST["presentation"])){
+                $_POST["presentation"] = htmlentities($_POST["presentation"], ENT_QUOTES);
+                $requeteSQL .= ", '$_POST[presentation]')";
+            }else{
+                $requeteSQL .= ", 'Non renseignée')";
+            }
+
             $pdo->exec($requeteSQL);
             //^Enregistre les données dans la base de données
     

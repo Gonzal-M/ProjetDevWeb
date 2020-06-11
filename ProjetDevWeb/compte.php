@@ -28,9 +28,15 @@ $user = $user->fetch(PDO::FETCH_OBJ);
             </div>
         </div>
 
-        <div class="form-group">
-            <label for="email">Email<span style="color: red;">*</span></label>
-            <input type="email" class="form-control" id="email" name="email" maxlength = "50" value="<?php echo $user->email; ?>">
+        <div class="row">
+            <div class="form-group col">
+                <label for="email">Email<span style="color: red;">*</span></label>
+                <input type="email" class="form-control" id="email" name="email" maxlength = "50" value="<?php echo $user->email; ?>">
+            </div>
+            <div class="form-group col">
+                <label for="tel">Numéro de téléphone<span style="color: red;">*</span></label>
+                <input type="texte" class="form-control" id="tel" name="tel" maxlength = "14" value="<?php echo $user->tel; ?>">
+            </div>
         </div>
 
         <div class="row">
@@ -40,7 +46,7 @@ $user = $user->fetch(PDO::FETCH_OBJ);
             </div>
 
             <div class="form-group col">
-                <label for="mdp2">Confirmer le mot de passe<span style="color: yelredlow;">*</span></label>
+                <label for="mdp2">Confirmer le mot de passe<span style="color: red;">*</span></label>
                 <input type="password" class="form-control" id="mdp2" name="mdp2" maxlength = "50" value="<?php echo $user->mdp; ?>">
             </div>
         </div>
@@ -50,6 +56,13 @@ $user = $user->fetch(PDO::FETCH_OBJ);
             <div class="col">
                 <label for="img">Photo de profil</label>
                 <input type="file" class="form-control-file" id="img" name="img[]">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col">
+                <label for="presentation">Présentation</label>
+                <textearea rows="5" maxlength="300" class="form-control" id="presentation" name="presentation"><?php echo $user->presentation; ?></textarea>
             </div>
         </div>
 
