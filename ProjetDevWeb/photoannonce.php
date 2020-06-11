@@ -7,7 +7,6 @@
     <?php $photos = $pdo->query("SELECT * FROM photos WHERE id_annonce = $_GET[IDannonce]");
     
     $nbphotos = $pdo->query("SELECT COUNT(*) FROM photos")->fetchAll();
-
     
     while($photo = $photos->fetch(PDO::FETCH_OBJ)){  
         if(intval($nbphotos[0]["COUNT(*)"]) > 1){ ?>

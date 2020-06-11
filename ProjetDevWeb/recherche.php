@@ -104,9 +104,11 @@ else{
 }
 
 
-
-//affichage des annonces recherchées
-while($annonce = $annonces->fetch(PDO::FETCH_OBJ)){ ?>
+$nbresults = 0;
+//affichage des résultats
+while($annonce = $annonces->fetch(PDO::FETCH_OBJ)){ 
+    $compte = $pdo->query("SELECT * FROM compte WHERE id_compte=$annonce->id_compte");
+    $compte = $compte->fetch(PDO::FETCH_OBJ); ?>
     <div class="card mb-3" style="max-width: 540px;">
         <div class="row no-gutters">
             <div class="col-md-4">
@@ -116,7 +118,7 @@ while($annonce = $annonces->fetch(PDO::FETCH_OBJ)){ ?>
             </div>
             <div class="col-md-8">
                 <div class="card-body">
-                    <h5 class="card-title"><?php echo $annonce->titre; ?></h5>
+                    <h5 class="card-title"><?php echo $annonce->titre; ?> <span style="color: grey;">par</span> <a href="profile.php?IDcompte=<?php echo $compte->id_compte; ?>"><?php echo $compte->email; ?></a></h5>
                     <p class="card-text">Ville : <?php echo $annonce->ville; ?></p>
                     <p class="card-text"><?php echo substr($annonce->descript, 0, 50) . "..."; ?></p>
                     <a class="btn btn-outline-info my-2 my-sm-0 btn-sm" href="recherche.php?IDannonce=<?php echo $annonce->id_annonce; ?>">Détails</a>
@@ -124,6 +126,11 @@ while($annonce = $annonces->fetch(PDO::FETCH_OBJ)){ ?>
             </div>
         </div>
     </div>
-<?php }
+    <?php $nbresults+=1;
+}
+
+if($nbresults == 0){
+    echo "<p style='color: red;'> Aucune annonce ne correspond à votre recherche.</p>";
+}
 
 require_once("inc/footer.inc.php"); ?>
