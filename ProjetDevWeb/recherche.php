@@ -46,6 +46,7 @@
     </form><br>
 </div>
 
+<!-- Requête SQL -->
 <?php $requeteSQL = "SELECT * FROM annonce a";
 
 if(empty($_POST)){
@@ -118,7 +119,7 @@ while($annonce = $annonces->fetch(PDO::FETCH_OBJ)){
             </div>
             <div class="col-md-8">
                 <div class="card-body">
-                    <h5 class="card-title"><?php echo $annonce->titre; ?> <span style="color: grey;">par</span> <a href="profil.php?IDcompte=<?php echo $compte->id_compte; ?>&afficherannonces=false"><?php echo $compte->prenom . " " . $compte->nom; ?></a></h5>
+                    <h5 class="card-title"><?php echo $annonce->titre; ?> par <a href="profil.php?IDcompte=<?php echo $compte->id_compte; ?>&afficherannonces=false"><?php echo $compte->prenom . " " . $compte->nom; ?></a></h5>
                     <p class="card-text">Ville : <?php echo $annonce->ville; ?></p>
                     <p class="card-text"><?php echo substr($annonce->descript, 0, 50) . "..."; ?></p>
                     <a class="btn btn-outline-info my-2 my-sm-0 btn-sm" href="detail.php?IDannonce=<?php echo $annonce->id_annonce; ?>">Détails</a>
