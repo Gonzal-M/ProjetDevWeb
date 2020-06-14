@@ -22,7 +22,7 @@ if(!empty($_SESSION["userID"])){ ?>
                             <div class="card-body">
                                 <h5 class="card-title"><?php echo $annonce->titre; ?></h5>
                                 <p class="card-text">Ville : <?php echo $annonce->ville; ?></p>
-                                <p class="card-text"><?php echo substr($annonce->descript, 0, 50) . " ..."; ?></p>
+                                <p class="card-text"><?php echo substr($annonce->descript, 0, 50) . "..."; ?></p>
                                 <a class="btn btn-outline-info my-2 my-sm-0 btn-sm" href="gestionbiens.php?gerer=modifier&IDannonce=<?php echo $annonce->id_annonce; ?>" style="margin-left : 50px;">Modifier</a>
                                 <a class="btn btn-outline-danger my-2 my-sm-0 btn-sm" href="gestionbiens.php?gerer=supprimer&IDannonce=<?php echo $annonce->id_annonce; ?>">Supprimer</a>
                             </div>
@@ -32,7 +32,7 @@ if(!empty($_SESSION["userID"])){ ?>
 
             <?php } ?>
 
-            <a href="gestionbiens.php?gerer=ajouter">Ajouter une annonce</a><br>
+            <a href="gestionbiens.php?gerer=ajouter" class="btn btn-outline-info" style="margin-bottom: 10px;">Ajouter une annonce</a>
 
         <?php }
 

@@ -64,7 +64,7 @@ if(!empty($_SESSION["userID"])){
             <div class="row">
                 <div class="form-group col">
                     <label for="presentation">Présentation</label>
-                    <textearea rows="5" maxlength="300" class="form-control" id="presentation" name="presentation"><?php echo $user->presentation; ?></textarea>
+                    <textarea rows="3" maxlength="300" class="form-control" id="presentation" name="presentation"><?php echo $user->presentation; ?></textarea>
                 </div>
             </div>
 
@@ -98,8 +98,18 @@ if(!empty($_SESSION["userID"])){
         
         if($_POST["mdp1"]==$_POST["mdp2"]){
             // ^Vérifie que les mots de passe sont identiques
+            $requeteSQL = "UPDATE compte SET prenom = '$_POST[prenom]', nom = '$_POST[nom]', email = '$_POST[email]', mdp = '$_POST[mdp2]', nomphoto = '$name'";
+            
+            //vérifie s'il y a eu modif des champs non obligatoires 
+            if(!empty($_POST["tel"])){
+                $requeteSQL .= ", tel = '$_POST[tel]'";
+            }
+            if(!empty($_POST["presentation"])){
+                $requeteSQL .= ", presentation = '$_POST[presentation]'";
+            }
 
-            $pdo->exec("UPDATE compte SET prenom ='$_POST[prenom]', nom = '$_POST[nom]', email = '$_POST[email]', mdp = '$_POST[mdp2]', nomphoto = '$name' WHERE id_compte='$_SESSION[userID]'");
+            $requeteSQL .= "WHERE id_compte='$_SESSION[userID]'";
+            $pdo->exec($requeteSQL);
             //^Enregistre les données modifiées dans la base de données
 
             

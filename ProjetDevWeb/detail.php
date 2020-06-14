@@ -13,7 +13,7 @@ $premphoto = $pdo->query("SELECT * FROM photos WHERE id_annonce='$annonce->id_an
         <div class="card col-md-5" style="border: 0px">
             <img src="img/annonces/<?php echo $premphoto->nomphoto; ?>" class="card-img" alt="Première photo de l'annonce" style="filter: blur(10px);">
             <div class="card-img-overlay">
-                <p class="card-text" style="height: 300px;"><span style="font-weight: bold;">Description : </span><br><?php echo $annonce->descript; ?></p>
+                <p class="card-text" style="height: 80%;"><span style="font-weight: bold;">Description : </span><br><?php echo $annonce->descript; ?></p>
                 <div class="card-footer bg-transparent">
                     <p class="card-text"><span style="font-weight: bold;">Prix par nuit par personne : </span><?php echo $annonce->prix; ?> €</p>
                     <p class="card-text"><span style="font-weight: bold;">Nombre de places : </span><?php echo $annonce->nb_places; ?></p>
@@ -40,7 +40,7 @@ $premphoto = $pdo->query("SELECT * FROM photos WHERE id_annonce='$annonce->id_an
                 
             <img src="img/annonces/<?php echo $nomphoto; ?>" class="card-img" alt="Première photo de l'annonce">
             <div class="card-img-overlay">
-                <div class="card-footer bg-transparent" style="margin-top:320px;">
+                <div class="card-footer bg-transparent" style="margin-top:80%;">
                     <!-- affichage des miniatures -->
                     <?php $photos2 = $pdo->query("SELECT * FROM photos WHERE id_annonce='$annonce->id_annonce'");
                     while($photo = $photos2->fetch(PDO::FETCH_OBJ)){ ?>
@@ -65,7 +65,7 @@ $premphoto = $pdo->query("SELECT * FROM photos WHERE id_annonce='$annonce->id_an
         <div class="col-md-8">
             <div class="mapouter" style="position:relative; text-align:right; height:500px; width:600px;">
                 <div class="gmap_canvas" style="overflow:hidden;background:none!important;height:500px;width:600px;">
-                    <iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=<?php echo $recherche; ?>&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                    <iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=<?php echo $recherche; ?>&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
                 </div>
             </div>
         </div>

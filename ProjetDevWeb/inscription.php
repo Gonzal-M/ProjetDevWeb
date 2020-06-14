@@ -56,7 +56,7 @@
         <div class="row">
             <div class="form-group col">
                 <label for="presentation">Présentation</label>
-                <textearea rows="5" maxlength="300" class="form-control" id="presentation" name="presentation" placeholder="Présentez-vous ! (0-300 caractères)"></textarea>
+                <textarea rows="3" maxlength="300" class="form-control" id="presentation" name="presentation" placeholder="Présentez-vous ! (0-300 caractères)"></textarea>
             </div>
         </div>
         
@@ -131,7 +131,7 @@
             $_SESSION["userID"]=$userID->id_compte;
             // ^Connecte l'utilisateur
     
-            require_once("inc/inscription.inc.php");
+            //require_once("inc/inscription.inc.php");
             // ^Envoie mail de confirmation
             
             header("Location:index.php");

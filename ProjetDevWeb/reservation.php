@@ -11,7 +11,7 @@
 
     <?php if(empty($_POST["nbpersonnes"]) || empty($_POST["datedebut"]) || empty($_POST["datefin"])){ ?>
         <p><span style="color: red;">*</span>Champs obligatoires</p>
-        <form method="POST" >
+        <form method="POST">
             <div class="row">
                 <div class="form-group col-md-4">
                     <label for="nbpersonnes">Nombre de locataires<span style="color: red;">*</span></label>
@@ -41,23 +41,28 @@
                 <?php } ?>
             </div>
                 
-                <a href="reservation.php?IDannonce=<?php echo $annonce->id_annonce; ?>&confirm=true"><button type="submit" class="btn btn-primary">Réserver</button></a>
+                <button type="submit" class="btn btn-primary">Réserver</button>
                 <a class="btn btn-primary" href="index.php">Retour</a>
+
         </form><br>
     <?php }else{
         $peutreserver = false;
         //vérifie que les dates ont un ordre logique
         if($_POST['datedebut'] < $_POST['datefin']){
             //vérifie s'il y a déjà une réservation pendant la période demandée
-            while($reservation = $reservations->fetch(PDO::FETCH_OBJ)){
-                if( ( $_POST['datedebut'] >= $reservation->date_arrive && $_POST['datedebut'] <= $reservation->date_depart ) || ( $_POST['datefin'] >= $reservation->date_arrive && $_POST['datefin'] <= $reservation->date_depart ) ){
-                    echo "<p style='color: red'>Ces dates ne sont pas disponibles.</p>";
-                    echo "<a class='btn btn-primary' href='reservation.php?IDannonce=" . $annonce->id_annonce . "'>Retour</a><br>";
-                    $peutreserver = false;
-                    break;
+            if(!empty($reservexiste)){ 
+                while($reservation = $reservations->fetch(PDO::FETCH_OBJ)){
+                    if( ( $_POST['datedebut'] >= $reservation->date_arrive && $_POST['datedebut'] <= $reservation->date_depart ) || ( $_POST['datefin'] >= $reservation->date_arrive && $_POST['datefin'] <= $reservation->date_depart ) ){
+                        echo "<p style='color: red'>Ces dates ne sont pas disponibles.</p>";
+                        echo "<a class='btn btn-primary' href='reservation.php?IDannonce=" . $annonce->id_annonce . "'>Retour</a><br>";
+                        $peutreserver = false;
+                        break;
+                    }
+                    $peutreserver = true;
                 }
+            }else{
                 $peutreserver = true;
-            }
+            } 
         }else{
             echo "<p style='color: red'>Ces dates ne sont pas dans un ordre chronologiques.</p>";
             echo "<a class='btn btn-primary' href='reservation.php?IDannonce=" . $annonce->id_annonce . "'>Retour</a><br>";
@@ -87,7 +92,8 @@
                 <a class="btn btn-primary" href="recherche.php">Retour</a><br>
 
                 <?php //ajout de la réservation dans la BDD
-                $requeteSQL = "INSERT INTO reservation (id_annonce, date_arrive, date_depart) VALUE ('$annonce->id_annonce', '$datedebut', '$datefin');";
+                $idclient = $client->id_compte;
+                $requeteSQL = "INSERT INTO reservation (id_annonce, date_arrive, date_depart, id_client) VALUE ('$annonce->id_annonce', '$datedebut', '$datefin', '$idclient');";
                 //modification du solde du client et de l'hôte
                 $requeteSQL .= "UPDATE compte SET solde = '$soldeclient' WHERE id_compte = '$client->id_compte';";
                 $requeteSQL .= "UPDATE compte SET solde = '$soldehote' WHERE id_compte = '$hote->id_compte';";
@@ -95,9 +101,12 @@
                 $pdo->exec($requeteSQL);
                 //envoie mail de confirmation au client et à l'hôte
                 //require_once("inc/reservation.inc.php");
+            }else{
+                echo "<p style='color:red;'>Vous n'avez pas les moyens de réserver ce bien.</p>";
             }  
         }
     }
+
 }else{
     echo "<p style='color:red;'>Veuillez vous connecter pour accéder à cette page.</p>";
 }
