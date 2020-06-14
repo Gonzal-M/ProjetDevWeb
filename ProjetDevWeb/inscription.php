@@ -49,7 +49,7 @@
 
             <div class="form-group col-md-8">
                 <label for="solde">Solde<span style="color: red;">*</span></label>
-                <input type="number" class="form-control" id="solde" name="solde" min="0" max="99999" placeholder="L'argent que vous souhaitez utiliser (en euros, jusqu'à 99.999€)" onkeydown="return event.keyCode !== 69">
+                <input type="number" class="form-control" id="solde" name="solde" min="0" max="99999" placeholder="L'argent que vous souhaitez utiliser (en euros, jusqu'à 99.999€)">
             </div>
         </div>
 
@@ -127,8 +127,7 @@
             $pdo->exec($requeteSQL);
             //^Enregistre les données dans la base de données
     
-            $result = $pdo->query("SELECT id_compte FROM compte WHERE email='$_POST[email]'"); 
-            $userID = $result->fetch(PDO::FETCH_OBJ);
+            $userID = $pdo->query("SELECT id_compte FROM compte WHERE email='$_POST[email]'")->fetch(PDO::FETCH_OBJ); 
             $_SESSION["userID"]=$userID->id_compte;
             // ^Connecte l'utilisateur
     

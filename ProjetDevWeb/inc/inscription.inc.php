@@ -13,12 +13,12 @@
     $subject = "Copie de l'inscription de l'utilisateur " . $prenom;
     $subject2 = "Copie de votre inscription chez Airbnb";
         
-    $emailmessage = "Bonjour " . $prenom . ", voici la confirmation de votre inscription.\n\n";
-    $emailmessage .= "Prénom: ".  $prenom ."\n";
-    $emailmessage .= "Nom: ". $nom ."\n";
-    $emailmessage .= "Email: ". $email ."\n";
-    $emailmessage .= "Mot de passe: ". $mdp ."\n";
-    $emailmessage .= "Solde: ". $solde ."\n";
+    $emailmessage = "Bonjour " . $prenom . $nom . ", voici la confirmation de votre inscription.\n\n";
+    $emailmessage .= "Prénom : ".  $prenom . "\n";
+    $emailmessage .= "Nom : ". $nom . "\n";
+    $emailmessage .= "Email : ". $email . "\n";
+    $emailmessage .= "Mot de passe : ". $mdp . "\n";
+    $emailmessage .= "Solde : ". $solde . "\n";
     $headers = "From:" . $from;
     $headers2 = "From:" . $to;
        

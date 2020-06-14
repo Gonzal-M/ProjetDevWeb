@@ -1,16 +1,10 @@
-<?php require_once("inc/header.inc.php"); ?>
+<?php require_once("inc/header.inc.php"); 
 
-<!--
-    Page détaillant un bien à louer 
-    Possibilité de réserver si connecté mais la page peut être consultée sans connexion
+//page de détail d'une annonce
 
-    Localiser le logement sur une carte
--->
-
-<?php $annonce = $pdo->query("SELECT * FROM annonce WHERE id_annonce = '$_GET[IDannonce]'")->fetch(PDO::FETCH_OBJ); 
+$annonce = $pdo->query("SELECT * FROM annonce WHERE id_annonce = '$_GET[IDannonce]'")->fetch(PDO::FETCH_OBJ); 
 $user = $pdo->query("SELECT * FROM compte WHERE id_compte = '$annonce->id_compte'")->fetch(PDO::FETCH_OBJ);
-$photos = $pdo->query("SELECT * FROM photos WHERE id_annonce='$annonce->id_annonce'");
-$premphoto = $photos->fetch(PDO::FETCH_OBJ);?>
+$premphoto = $pdo->query("SELECT * FROM photos WHERE id_annonce='$annonce->id_annonce'")->fetch(PDO::FETCH_OBJ); ?>
 
     <h1><?php echo $annonce->titre; ?> par <a href="profil.php?IDcompte=<?php echo $compte->id_compte; ?>&afficherannonces=false"><?php echo $user->prenom . " " . $user->nom; ?></a></h1><br>
 
@@ -46,16 +40,14 @@ $premphoto = $photos->fetch(PDO::FETCH_OBJ);?>
                 
             <img src="img/annonces/<?php echo $nomphoto; ?>" class="card-img" alt="Première photo de l'annonce">
             <div class="card-img-overlay">
-                <div class="card-footer bg-transparent" style="margin-top:320px; height: 100px;">
+                <div class="card-footer bg-transparent" style="margin-top:320px;">
                     <!-- affichage des miniatures -->
-                    <?php $nbphotos=0;
-                    while($photo = $photos->fetch(PDO::FETCH_OBJ)){ 
-                        $nbphotos+=1;?>
+                    <?php $photos2 = $pdo->query("SELECT * FROM photos WHERE id_annonce='$annonce->id_annonce'");
+                    while($photo = $photos2->fetch(PDO::FETCH_OBJ)){ ?>
                         <a href="detail.php?IDannonce=<?php echo $annonce->id_annonce; ?>&img=<?php echo $photo->id_photo; ?>">
                             <img src="img/annonces/<?php echo $photo->nomphoto; ?>" alt="Photo n°<?php echo $photo->id_photo; ?> de l'annonce" style="height: 50px; width: 50px; border: 1px, solid, grey;">
                         </a>
-                    <?php } 
-                    echo $nbphotos;?>
+                    <?php } ?>
                 </div>
             </div>
         </div>
@@ -68,7 +60,7 @@ $premphoto = $photos->fetch(PDO::FETCH_OBJ);?>
     <div class="row">
         <!-- api carte -->
         <div class="col-md-8">
-
+            <p style="color: grey;">Affichage de la carte...</p>
         </div>
 
         <!-- adresse -->
