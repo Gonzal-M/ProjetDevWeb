@@ -59,7 +59,7 @@ if(!empty($_SESSION["userID"])){?>
         echo "<p style='color: red;'>Aucune annonce sélectionnée. Veuillez choisir l'annonce dont vous voulez modifier les photos en cliquant <a href='gestionbiens.php'>ici</a>.</p><br>";
     } 
 }else{
-    echo "<p style='color:red;'>Veuillez vous connecter pour accéder à cette page.</p>"
+    echo "<p style='color:red;'>Veuillez vous connecter pour accéder à cette page.</p>";
 }
 
 require_once("inc/footer.inc.php"); ?>

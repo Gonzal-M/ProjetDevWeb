@@ -147,7 +147,4 @@ else if(!empty($_POST)){
     echo("<p style='color: red;'>Vous n'avez pas rempli tous les champs</p>");
 }
 
-
-    
-
 require_once("inc/footer.inc.php"); ?>

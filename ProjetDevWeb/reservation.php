@@ -99,7 +99,7 @@
         }
     }
 }else{
-    echo "<p style='color:red;'>Veuillez vous connecter pour accéder à cette page.</p>"
+    echo "<p style='color:red;'>Veuillez vous connecter pour accéder à cette page.</p>";
 }
 
 require_once("inc/footer.inc.php"); ?>
