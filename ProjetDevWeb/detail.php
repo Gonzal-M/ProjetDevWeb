@@ -58,9 +58,16 @@ $premphoto = $pdo->query("SELECT * FROM photos WHERE id_annonce='$annonce->id_an
     <br><br>
 
     <div class="row">
-        <!-- api carte -->
+        <!-- affichage carte -->
+        <?php $recherche = $annonce->numerorue . "+" . $annonce->nomrue . "+" . $annonce->codepostal . "+" . $annonce->ville;
+        https://www.google.com/maps/place/12+Rue+Anatole+France,+92000+Nanterre
+        ?>
         <div class="col-md-8">
-            <p style="color: grey;">Affichage de la carte...</p>
+            <div class="mapouter" style="position:relative; text-align:right; height:500px; width:600px;">
+                <div class="gmap_canvas" style="overflow:hidden;background:none!important;height:500px;width:600px;">
+                    <iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=<?php echo $recherche; ?>&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                </div>
+            </div>
         </div>
 
         <!-- adresse -->
