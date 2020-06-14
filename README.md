@@ -3,6 +3,16 @@ Projet Developpement Web - Sujet 1 : AirBnB - GONZALEZ Marie (Clawchette) et MAH
 
 Identifiants des comptes de test du site :
 
-annonces.test@gmail.com     test      (a posté 3 annonces)
+email : annonces.test@gmail.com     
 
-client.test@gmail.com       test      (a fait des réservations)
+mdp : test      
+
+description : a posté des annonces
+
+
+
+email : client.test@gmail.com
+
+mdp : test
+
+description : a fait des réservations
