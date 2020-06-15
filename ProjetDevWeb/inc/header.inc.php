@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Site AirBnB pour le projet de développement web">
     <meta name="author" content="GONZALEZ Marie & MAHENDRARASAN Mathursan">
+
+    <script src="https://kit.fontawesome.com/e869ddd0ef.js" crossorigin="anonymous"></script>
     <!-- CSS Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link href="css/style.css" rel="stylesheet">
@@ -15,7 +17,11 @@
   <header>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="index.php">AirBnB</a>
+      
+      <a class="navbar-brand" href="index.php">
+        <i class="fab fa-airbnb" style="margin-right: 2px;"></i>
+        AirBnB
+      </a>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
