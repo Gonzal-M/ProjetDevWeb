@@ -55,9 +55,12 @@ if(!empty($_SESSION["userID"])){
             
             <div class="form-group row">
                 <img src="img/profile/<?php echo $user->nomphoto; ?>" alt="Votre photo de profil" style="height: 150px;" class="col-md-2">
-                <div class="col">
+                <div class="col-md-4">
                     <label for="img">Photo de profil</label>
                     <input type="file" class="form-control-file" id="img" name="img[]">
+                </div>
+                <div class="col">
+                    <p>Votre solde (non modifiable) <br><?php echo $user->solde; ?> €</p>
                 </div>
             </div>
 

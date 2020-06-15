@@ -99,8 +99,9 @@
                 $requeteSQL .= "UPDATE compte SET solde = '$soldehote' WHERE id_compte = '$hote->id_compte';";
                 //envoie requête
                 $pdo->exec($requeteSQL);
+
                 //envoie mail de confirmation au client et à l'hôte
-                //require_once("inc/reservation.inc.php");
+                require_once("inc/reservation.inc.php");
             }else{
                 echo "<p style='color:red;'>Vous n'avez pas les moyens de réserver ce bien.</p>";
             }  

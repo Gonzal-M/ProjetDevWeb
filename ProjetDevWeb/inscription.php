@@ -5,8 +5,7 @@
     <br><h1>Créer un compte</h1>
     <p><span style="color: red;">*</span>Champs obligatoires</p>
    
-    <form method="POST" enctype='multipart/form-data'>
-
+    <form method="POST">
         <div class="row">
             <div class="form-group col">
                 <label for="prenom">Prénom<span style="color: red;">*</span></label>
@@ -131,10 +130,10 @@
             $_SESSION["userID"]=$userID->id_compte;
             // ^Connecte l'utilisateur
     
-            //require_once("inc/inscription.inc.php");
+            require_once("inc/inscription.inc.php");
             // ^Envoie mail de confirmation
             
-            header("Location:index.php");
+            //header("Location:index.php");
             // ^Retourne à la page d'accueil
         }    
     

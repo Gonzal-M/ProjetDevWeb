@@ -6,10 +6,19 @@ if(!empty($_SESSION["userID"])){ ?>
     <div class="starter-template">  
 
         <br><h1>Gestion des biens mis en location</h1><br>
+<?php
 
-        <?php $annonces = $pdo->query("SELECT * FROM annonce WHERE id_compte='$_SESSION[userID]'");
-        if(empty($_GET)){
-            while ($annonce = $annonces->fetch(PDO::FETCH_OBJ)) { ?>
+
+            $annonces = $pdo->query("SELECT * FROM annonce");
+            while ($annonce = $annonces->fetch(PDO::FETCH_OBJ)) { 
+                //affiche les informations nécessaires de l'annonces
+                //Exemple :
+                echo $annonce->titre;
+                echo $annonce->description; 
+            }
+
+
+                ?>
 
                 <div class="card mb-3" style="max-width: 540px;">
                     <div class="row no-gutters">
