@@ -1,5 +1,5 @@
 # ProjetDevWeb
-Projet Developpement Web - Sujet 1 : AirBnB - GONZALEZ Marie (Clawchette) et MAHENDRARASAN Mathursan (Rshzyyy)
+Projet Developpement Web - Sujet 1 : AirBnB - GONZALEZ Marie (Clawchette) 
 
 ___
 Identifiants des comptes de test du site :
